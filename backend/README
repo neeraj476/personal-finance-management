@@ -1,0 +1,136 @@
+# **User Registration API Documentation**
+
+## **1. Endpoint Information**
+- **URL:** `/api/users/register`
+- **Method:** `POST`
+- **Description:** Creates a new user account.
+- **Headers:**
+  - `Content-Type: application/json`
+- **Authentication:** ❌ *No authentication required* (public route)
+
+---
+
+## **2. Request Format**
+- **Content-Type:** `application/json`
+- **Body Parameters:**
+  
+  | Parameter  | Type     | Required | Description                  |
+  |-----------|---------|----------|------------------------------|
+  | `username` | `string` | ✅ Yes    | The name of the user.        |
+  | `email`    | `string` | ✅ Yes    | Unique email for the user.   |
+  | `password` | `string` | ✅ Yes    | The password for the account.|
+
+### **📌 Example Request:**
+```json
+{
+  "username": "JohnDoe",
+  "email": "johndoe@example.com",
+  "password": "123456"
+}
+```
+
+---
+
+## **3. Response Format**
+- **Success (201 Created)**
+  - Returns a success message, user details, and a JWT token.
+
+  ### **📌 Example Success Response:**
+  ```json
+  {
+    "message": "User registered successfully",
+    "user": {
+      "id": "64af0123456789abcd123456",
+      "username": "JohnDoe",
+      "email": "johndoe@example.com"
+    },
+    "token": "JWT_TOKEN_HERE"
+  }
+  ```
+
+- **Error Responses**
+  
+  | Status Code | Message |
+  |------------|---------|
+  | `400 Bad Request` | "All fields are required" |
+  | `400 Bad Request` | "User already exists" |
+  | `500 Internal Server Error` | "Server Error" |
+
+### **📌 Example Error Response (User Already Exists)**
+```json
+{
+  "message": "User already exists"
+}
+```
+
+
+
+# **User Login API Documentation**
+
+## **1. Endpoint Information**
+- **URL:** `/api/users/login`
+- **Method:** `POST`
+- **Description:** Authenticates a user and returns a JWT token.
+- **Headers:**
+  - `Content-Type: application/json`
+- **Authentication:** ❌ No authentication required (public route)
+
+---
+
+## **2. Request Format**
+- **Content-Type:** `application/json`
+- **Body Parameters:**
+  
+  | Parameter  | Type     | Required | Description                  |
+  |-----------|---------|----------|------------------------------|
+  | `email`    | `string` | ✅ Yes    | User's registered email.     |
+  | `password` | `string` | ✅ Yes    | User's account password.     |
+
+### **📌 Example Request:**
+```json
+{
+  "email": "johndoe@example.com",
+  "password": "123456"
+}
+```
+
+---
+
+## **3. Response Format**
+- **Success (200 OK)**
+  - Returns a success message, user details, and stores JWT token in an HTTP-only cookie.
+
+  ### **📌 Example Success Response:**
+  ```json
+  {
+    "message": "Login successful",
+    "user": {
+      "id": "64af0123456789abcd123456",
+      "username": "JohnDoe",
+      "email": "johndoe@example.com"
+    }
+  }
+  ```
+
+- **Error Responses**
+  
+  | Status Code | Message |
+  |------------|---------|
+  | `400 Bad Request` | "Email and password are required" |
+  | `400 Bad Request` | "Invalid credentials" |
+  | `500 Internal Server Error` | "Server Error" |
+
+### **📌 Example Error Response (Invalid Credentials)**
+```json
+{
+  "message": "Invalid credentials"
+}
+```
+
+---
+
+## **4. Notes**
+✔️ **JWT Token is stored in a secure HTTP-only cookie.**  
+✔️ **Invalid credentials return a 400 error.**  
+✔️ **This token can be used for authentication in protected routes.**
+
