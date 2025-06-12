@@ -31,11 +31,7 @@ export const createBudget = async (req, res) => {
   }
 };
 
-/**
- * @desc Get all budgets for a user
- * @route GET /api/budgets
- * @access Private
- */
+
 export const getAllBudgets = async (req, res) => {
   try {
     const userId = req.user?.id;
@@ -52,11 +48,7 @@ export const getAllBudgets = async (req, res) => {
   }
 };
 
-/**
- * @desc Get a single budget by ID
- * @route GET /api/budgets/:id
- * @access Private
- */
+
 export const getBudgetById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -73,11 +65,6 @@ export const getBudgetById = async (req, res) => {
   }
 };
 
-/**
- * @desc Update an existing budget
- * @route PUT /api/budgets/:id
- * @access Private
- */
 export const updateBudget = async (req, res) => {
     try {
       const { id } = req.params;
@@ -100,11 +87,7 @@ export const updateBudget = async (req, res) => {
     }
   };
   
-  /**
-   * @desc Delete a budget
-   * @route DELETE /api/budgets/:id
-   * @access Private
-   */
+
   export const deleteBudget = async (req, res) => {
     try {
       const { id } = req.params;
@@ -121,11 +104,7 @@ export const updateBudget = async (req, res) => {
     }
   };
   
-  /**
-   * @desc Add an expense to a budget
-   * @route POST /api/budgets/:id/expense
-   * @access Private
-   */
+
   export const addExpense = async (req, res) => {
     try {
       const { id } = req.params; // Budget ID

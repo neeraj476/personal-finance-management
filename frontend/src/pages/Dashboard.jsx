@@ -19,6 +19,8 @@ const Dashboard = () => {
     }
   };
 
+  
+
   // Handle Enter key press for search
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
