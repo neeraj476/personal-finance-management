@@ -11,7 +11,7 @@ import budgetRouter from './routes/budget.router.js'
 const app = express();
 
 app.use(cors({ origin: ['http://localhost:5173', 'https://hisaabdekho1.netlify.app'],
-  , credentials: true }));  // Allow frontend requests
+   credentials: true }));  // Allow frontend requests
 app.use(express.json());
 app.use(cookieParser());
 
